@@ -1,0 +1,17 @@
+#!/bin/bash
+user=$(whoami)  #show current user
+input=/home/sysadmin/Desktop/linux_config # backup 
+output=/tmp/${user}_linux_config_$(date +%Y-%m- %d_%H%M%S).tar.gz #backup file location
+
+function total_files {
+        find $input -type f | wc -l
+}
+echo -n "Files to be included:"
+total_files $input
+
+
+tar -czf $output $input 2> /dev/null
+echo " Backup of $input completed!"
+
+echo " Backup of $input complete! Details about the output backup file "
+ls -l $output
